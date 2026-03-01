@@ -1,0 +1,7 @@
+<Solution>
+  <Configurations>
+    <Platform Name="x64" />
+    <Platform Name="x86" />
+  </Configurations>
+  <Project Path="Gestor_Almacen/Gestor_Almacen.vcxproj" Id="21ee21c3-0972-45e5-9abe-046e16aad45e" />
+</Solution>
