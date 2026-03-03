@@ -155,7 +155,7 @@ void Buscar_Producto(std::list<Producto>& Almacen) {
     string Nombre;
     cout << "//////////////////////////////////////////////////// Busqueda de Inventario ////////////////////////////////////////////////////" << endl << endl;
     if (Almacen.empty()) {
-        cout << "La lista esta vacia...";
+        cout << "La lista esta vacia..." << endl;;
         Pausa();
         return;
     }
@@ -233,7 +233,7 @@ void Modificar_Producto(std::list<Producto>& Almacen) {
 
 void Eliminar_Producto(std::list<Producto>& Almacen) {
     string producto;
-    int encontrado = 0;
+    int encontrado = 1;
 
     if (Almacen.empty()) {
         cout << "La lista esta vacia...";
@@ -259,7 +259,7 @@ void Eliminar_Producto(std::list<Producto>& Almacen) {
         }
         cout << "Producto no encontrado..." << endl;
         cout << "Desea volver a intentarlo SI=1, NO=0: ";
-        encontrado = Verificar_Rango(1, 0);
+        encontrado = Verificar_Rango(0, 1);
         system("cls");
 
     }
@@ -282,11 +282,12 @@ void Generar_Reporte(std::list<Producto>& Almacen) {
     archivo << "=====================================================\n\n";
 
     for (const auto& it : Almacen) {
-        archivo << "Titulo: " << it.Nombre << "\n"
-            << "Autor: " << it.Marca << "\n"
-            << "Genero: " << it.Categoria << "\n"
-            << "Editorial: " << it.Precio << "\n"
-            << "Paginas: " << it.Unidades << "\n"
+        archivo << "Nombre: " << it.Nombre << "\n"
+            << "Marca: " << it.Marca << "\n"
+            << "Categoria: " << cate[it.Categoria - 1] << "\n"
+            << "Precio: " << it.Precio << "\n"
+            << "Unidades: " << it.Unidades << "\n"
+
             << "-----------------------------------------------------\n";
     }
 
@@ -314,6 +315,7 @@ void Suma_Total_Productos(std::list<Producto>& Almacen) {
 
 void Buscar_por_Categoria(std::list<Producto>& Almacen) {
     int ca = 0;
+    bool estado = false;
     cout << "//////////////////////////////////////////////////// Busqueda Por Categoria ////////////////////////////////////////////////////" << endl << endl;
     if (Almacen.empty()) {
         cout << "La lista esta vacia...";
@@ -325,16 +327,20 @@ void Buscar_por_Categoria(std::list<Producto>& Almacen) {
     cout << "Ingresa la categoria." << endl;
     ca = Verificar_Rango(1, 5);
 
-    cout << "############# " << cate[ca - 1] << " #############" << endl;
+    cout <<endl<< "############# " << cate[ca - 1] << " #############" << endl;
     for (auto& it : Almacen) {
         if (it.Categoria == ca) {
+            cout << "Nombre: " << it.Nombre << endl;
             cout << "Marca: " << it.Marca << endl;
             cout << "Categoria: " << cate[it.Categoria - 1] << endl;
             cout << "Precio de la unidad: " << it.Precio << endl;
             cout << "Cantidad en almacen: " << it.Unidades << endl;
             cout << "-----------------------------------------------------------------------------------------------------------------------" << endl;
-            
+            estado = true;
         }
+    }
+    if (estado == false) {
+        cout <<endl<< "No hay productos de esa categoria..." << endl;
     }
     cout << endl;
     Pausa();
@@ -374,9 +380,17 @@ float Verificar_numero_float() {
 }
 
 void Pausa() {
-    cout << "\nPresiona ENTER para continuar...";
-    cin.ignore(numeric_limits<streamsize>::max(), '\n');
+    cout << endl<<"Presiona ENTER para continuar...";
+
+    if (cin.peek() == '\n') {
+        cin.get();  // Si ya hay un ENTER pendiente, lo consume
+    }
+    else {
+        cin.ignore(numeric_limits<streamsize>::max(), '\n'); // Limpia basura
+        cin.get();  // Espera un ENTER real
+    }
 }
+    
 
 void mostrar(std::list<Producto>& Almacen) {
     cout << "Lista Rapida de los productos: " << endl;
