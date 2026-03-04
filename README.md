@@ -38,7 +38,7 @@ Aplicación de consola desarrollada en C++ para administrar un inventario de pro
 ## Objetivo del proyecto
 Este proyecto forma parte de un portafolio orientado a demostrar habilidades prácticas en C++ mediante la construcción de aplicaciones reales. El sistema muestra dominio de estructuras de datos dinámicas, validación de entrada, manejo de archivos, diseño modular y buenas prácticas de programación en consola.
 
-🚀 Mejoras futuras
+## Mejoras futuras
 - Guardar y cargar inventario desde archivo al iniciar/cerrar el programa.
 - Ordenar productos por nombre, precio o categoría.
 - Exportar reporte en formato CSV.
